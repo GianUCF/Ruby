@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RubyController : MonoBehaviour
 {
     public float speed = 3.0f;
-    
+    public Text RestartText;
     public int maxHealth = 5;
-    
+    public UIRestartGame restartScript;
+
     public GameObject projectilePrefab;
-    
+    public bool canMove;
     public AudioClip throwSound;
     public AudioClip hitSound;
     
@@ -36,7 +38,7 @@ public class RubyController : MonoBehaviour
         animator = GetComponent<Animator>();
         
         currentHealth = maxHealth;
-
+        canMove = true;
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -82,15 +84,28 @@ public class RubyController : MonoBehaviour
                 }
             }
         }
+        if (currentHealth <= 0)
+        {
+            canMove = false;
+            RestartText.text = "You Lost! R to Restart";
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                restartScript.ResetTheGame();
+            }
+        }
     }
     
     void FixedUpdate()
     {
+        if(canMove)
+        {
+
         Vector2 position = rigidbody2d.position;
         position.x = position.x + speed * horizontal * Time.deltaTime;
         position.y = position.y + speed * vertical * Time.deltaTime;
 
         rigidbody2d.MovePosition(position);
+        }
     }
 
     public void ChangeHealth(int amount)
