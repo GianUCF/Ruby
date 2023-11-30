@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnemyController : MonoBehaviour
 {
+
     public float speed;
     public bool vertical;
     public float changeTime = 3.0f;
+
 
     public ParticleSystem smokeEffect;
     
@@ -81,11 +84,12 @@ public class EnemyController : MonoBehaviour
     //Public because we want to call it from elsewhere like the projectile script
     public void Fix()
     {
-        broken = false;
+        ScoreCounter score = GetComponent<ScoreCounter>();
+        this.broken = false;
         rigidbody2D.simulated = false;
         //optional if you added the fixed animation
         animator.SetTrigger("Fixed");
-        
+        ScoreCounter.instance.AddPoints();
         smokeEffect.Stop();
     }
 }

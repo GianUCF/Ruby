@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
-public class scorecounter : MonoBehaviour
+public class ScoreCounter : MonoBehaviour
 {
-    public static scorecounter instance;
+    public static ScoreCounter instance;
     public Text playerScore;
+    public GameObject endPanel;
 
-    //public MenuController menuController;
     public int currentScore = 0;
+    public MenuController menuController;
 
     void Awake()
     {
@@ -20,17 +22,18 @@ public class scorecounter : MonoBehaviour
     //Displays Score 
     void Start()
     {
-        playerScore.text = currentScore.ToString() + "/2 Fixed Robots";
+        playerScore.text = currentScore.ToString() + "/5 Robots Fixed";
     }
 
     //Adds points whenever an enemy calls "Fix"
     public void AddPoints()
     {
         currentScore += 1;
-        playerScore.text = currentScore.ToString() + "/2 Fixed Robots";
+        playerScore.text = currentScore.ToString() + "/5 Robots Fixed";
         if (currentScore >= 5)
         {
-            //menuController.WinGame();
+            endPanel.SetActive(true);
+            endPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "You Win! Press R to restart!";
         }
     }
 }
