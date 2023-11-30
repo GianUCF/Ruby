@@ -84,12 +84,12 @@ public class EnemyController : MonoBehaviour
     //Public because we want to call it from elsewhere like the projectile script
     public void Fix()
     {
-        ScoreCounter score = GetComponent<ScoreCounter>();
+        UIManager.Instance.scoreCount++;
+        UIManager.Instance.UpdateRobotCounterUI();
         this.broken = false;
         rigidbody2D.simulated = false;
         //optional if you added the fixed animation
         animator.SetTrigger("Fixed");
-        ScoreCounter.instance.AddPoints();
         smokeEffect.Stop();
     }
 }
