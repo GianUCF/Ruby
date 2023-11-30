@@ -36,7 +36,7 @@ public class RubyController : MonoBehaviour
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        
+        Time.timeScale = 1;
         currentHealth = maxHealth;
         canMove = true;
         audioSource = GetComponent<AudioSource>();
@@ -88,6 +88,7 @@ public class RubyController : MonoBehaviour
         {
             canMove = false;
             RestartText.text = "You Lost! R to Restart";
+            Time.timeScale = 0;
             if(Input.GetKeyDown(KeyCode.R))
             {
                 restartScript.ResetTheGame();
