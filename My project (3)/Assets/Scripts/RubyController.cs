@@ -19,6 +19,8 @@ public class RubyController : MonoBehaviour
     int currentHealth;
     
     public float timeInvincible = 2.0f;
+    public ParticleSystem DamageEffect;
+    public ParticleSystem HealthEffect;
     bool isInvincible;
     float invincibleTimer;
     
@@ -109,7 +111,7 @@ public class RubyController : MonoBehaviour
         }
     }
 
-    public void ChangeHealth(int amount)
+    public void ChangeHealth(int amount)    
     {
         if (amount < 0)
         {
@@ -118,10 +120,16 @@ public class RubyController : MonoBehaviour
             
             isInvincible = true;
             invincibleTimer = timeInvincible;
-            
+            Instantiate(DamageEffect, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
             PlaySound(hitSound);
+            DamageEffect.Play();
         }
-        
+
+        else if (amount > 0)
+        {
+            Instantiate(HealthEffect, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+            HealthEffect.Play();
+        }         
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         
         UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
