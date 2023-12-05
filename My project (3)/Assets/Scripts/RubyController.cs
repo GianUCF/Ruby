@@ -15,6 +15,8 @@ public class RubyController : MonoBehaviour
     public AudioClip throwSound;
     public AudioClip hitSound;
     public AudioClip penguin;
+    public AudioClip Slime;
+    public AudioClip Mushroom;
     
     public int health { get { return currentHealth; }}
     int currentHealth;
@@ -100,6 +102,31 @@ public class RubyController : MonoBehaviour
                 }
             }
         }
+        // Slime and Mushroom if statement by Jamal
+                if (Input.GetKeyDown(KeyCode.X))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("Slime"));
+            if (hit.collider != null)
+            {
+                NonPlayerCharacter character = hit.collider.GetComponent<NonPlayerCharacter>();
+                if (character != null)
+                {
+                    PlaySound(Slime);
+                }
+            }
+        }
+                        if (Input.GetKeyDown(KeyCode.X))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("Mushroom"));
+            if (hit.collider != null)
+            {
+                NonPlayerCharacter character = hit.collider.GetComponent<NonPlayerCharacter>();
+                if (character != null)
+                {
+                    PlaySound(Mushroom);
+                }
+            }
+        }
             if (currentHealth <= 0)
         {
             canMove = false;
@@ -147,6 +174,12 @@ public class RubyController : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         
         UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
+    }
+    //Jamal
+    public void ChangeSpeed(int amount)
+    {
+        speed = 8;
+        DamageEffect.Play();
     }
     
     void Launch()
