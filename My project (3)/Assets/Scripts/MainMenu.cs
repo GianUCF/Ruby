@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+//Paul Dingee wrote this script
 public class MainMenu : MonoBehaviour
 {
  public void PlayGame()

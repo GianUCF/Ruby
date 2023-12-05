@@ -14,6 +14,7 @@ public class RubyController : MonoBehaviour
     public bool canMove;
     public AudioClip throwSound;
     public AudioClip hitSound;
+    public AudioClip penguin;
     
     public int health { get { return currentHealth; }}
     int currentHealth;
@@ -86,7 +87,20 @@ public class RubyController : MonoBehaviour
                 }
             }
         }
-        if (currentHealth <= 0)
+        // Paul Dingee wrote this nested if statment 
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("Penguin"));
+            if (hit.collider != null)
+            {
+                NonPlayerCharacter character = hit.collider.GetComponent<NonPlayerCharacter>();
+                if (character != null)
+                {
+                    PlaySound(penguin);
+                }
+            }
+        }
+            if (currentHealth <= 0)
         {
             canMove = false;
             RestartText.text = "You Lost! R to Restart";
