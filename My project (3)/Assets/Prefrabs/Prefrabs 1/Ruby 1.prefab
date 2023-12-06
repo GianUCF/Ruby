@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5718136411463929125}
   - component: {fileID: 5718136411463929126}
+  - component: {fileID: 6466627800083006455}
   - component: {fileID: 5718136411463929124}
   - component: {fileID: 1258770440106423336}
   - component: {fileID: 3800513183415914726}
@@ -89,6 +90,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!114 &6466627800083006455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5718136411463929127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d435c6f115cdca419e28810af35cf12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5718136411463929124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,7 +122,12 @@ MonoBehaviour:
   canMove: 0
   throwSound: {fileID: 8300000, guid: b2edfd40873655249ba0e01a5cf705be, type: 3}
   hitSound: {fileID: 8300000, guid: ae904c7305df7344d86b2092c0cb3a26, type: 3}
+  penguin: {fileID: 0}
+  Slime: {fileID: 0}
+  Mushroom: {fileID: 0}
   timeInvincible: 2
+  DamageEffect: {fileID: 0}
+  HealthEffect: {fileID: 0}
 --- !u!50 &1258770440106423336
 Rigidbody2D:
   serializedVersion: 4

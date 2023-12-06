@@ -17,6 +17,8 @@ public class RubyController : MonoBehaviour
     public AudioClip penguin;
     public AudioClip Slime;
     public AudioClip Mushroom;
+    public AudioClip Portal;
+    public AudioClip GirlDancing;
     
     public int health { get { return currentHealth; }}
     int currentHealth;
@@ -127,6 +129,34 @@ public class RubyController : MonoBehaviour
                 }
             }
         }
+        //Portal and GirlDancing by Gianfranco
+                        if (Input.GetKeyDown(KeyCode.X))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("Portal"));
+            if (hit.collider != null)
+            {
+                NonPlayerCharacter character = hit.collider.GetComponent<NonPlayerCharacter>();
+                if (character != null)
+                {
+                    PlaySound(Portal);
+                }
+            }
+            
+        }
+                        if (Input.GetKeyDown(KeyCode.X))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("GirlDancing"));
+            if (hit.collider != null)
+            {
+                NonPlayerCharacter character = hit.collider.GetComponent<NonPlayerCharacter>();
+                if (character != null)
+                {
+                    PlaySound(GirlDancing);
+                }
+            }
+            
+        }
+                
             if (currentHealth <= 0)
         {
             canMove = false;
